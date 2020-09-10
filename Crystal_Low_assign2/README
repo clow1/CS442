@@ -1,0 +1,91 @@
+# CS442: Assignment 1
+## Name: Crystal Low
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+####Command: 
+
+To build:
+ant -buildfile studentCoursePlanner/src/build.xml 
+To run:
+ant -buildfile studentCoursePlanner/src/build.xml run -Darg0="$(path)/input1.txt" -Darg1="$(path)/outpu1.txt" 
+
+where $(path) is equal to the absolute path of where this assignment is located.
+**********OR*************
+Use the Makefile included in the directory this README is.
+
+To build:
+make build
+
+To run:
+make run
+
+To clean:
+make clean
+
+:::IMPORTANT::: 
+Change the constant named path to the absolute destination of all the text files.
+Everytime the text files are moved, change the path variable within the Makefile
+to match its new location. Change the text file names inside the Makefile too.
+
+-----------------------------------------------------------------------
+## Description:
+
+Used a linkedlist of arrays to hold in data corresponding to each group 1-5. 
+Each group held courses as required in the assignment description. Courses were 
+stored as characters. No need to create a class since the nature of this data structure
+implicitly sets prerequisites for each class. 
+
+Audit() in student class takes in the linkedlist of arrays (further described as group data).
+Linkedlist hold -- ie, the waitlist --  stores all the waitlisted courses. 
+take stores the courses that can actually be taken.
+
+The first while loop within audit() basically finds, if they exist within the student prefs,
+prerequisite courses. That is, the prerequisites are A E M I, respectively. Q is in group 5,
+but group 5 has no need for prerequisites. it is taken care of later on. 
+
+Each first element within all arrays in the linked list is compared to the student preferences.
+If they match, then it will be popped from the data structure and added to the take arraylist. recall
+that this arraylist holds the true classes that may be taken. if they don't, then that
+preference is added to the waitlist.
+
+record[] is a five element int array that increments each index corresponding to the group.
+In the first while loop, we break out after the total sum of all indexes in record[] is 3.
+This makes it certain that the student has taken some necessary prerequisites. Other courses within
+the student's preferences that are not prerequisites are then stored into the waitlist. 
+
+The second while loop then deals with the preferences that are on the waitlist, and 
+the preferences that have not been reached. I still use our group data to compare
+and use as a means of verification for what level the student is at.
+
+Then I used record[] elements to search for the next given class in the sequence. 
+If they exist within the student preferences at all,
+using the index element to check and see how far that sequence has gone. This basically 
+makes it so that, if I understand things correctly, the student will either graduate on time,
+or not graduate given their preferences in the first place.
+
+Each time the loop iterates through, it will check and iterate through the waitlist first,
+comparing it to the status of their courses taken. A clear visual and step by step process
+is maintained due to the very nature of the group data data structure. 
+
+
+-----------------------------------------------------------------------
+##Note:
+
+Used 1 slack day. 
+
+-----------------------------------------------------------------------
+### Academic Honesty statement:
+-----------------------------------------------------------------------
+
+"I have done this assignment completely on my own. I have not copied
+it, nor have I given my solution to anyone else. I understand that if
+I am involved in plagiarism or cheating an official form will be
+submitted to the Academic Honesty Committee of the Watson School to
+determine the action that needs to be taken. "
+
+Crystal Low
+Date: [10/9/2019]
+
+
